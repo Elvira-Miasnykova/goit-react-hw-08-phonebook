@@ -1,14 +1,15 @@
-import { Form } from './Form/Form';
-import { ContactsList } from './Contacts/ContactsList';
-import { Title, Header } from './Title.styled';
-import { Filter } from './Filter/Filter';
-import { Box } from './Box';
+import { Form } from '../components/Form/Form';
+import { ContactsList } from '../components/Contacts/ContactsList';
+import { Title, Header } from '../components/Title/Title.styled';
+import { Filter } from '../components/Filter/Filter';
+import { Box } from '../components/Box';
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchContacts } from 'redux/operations';
-import { getError, getIsLoading } from 'redux/selectors';
+import { fetchContacts } from 'redux/contacts/operations';
+import { getError, getIsLoading } from 'redux/contacts/selectors';
 
-export function App() {
+
+export function Contacts() {
   const dispatch = useDispatch();
 
   useEffect(() => {
