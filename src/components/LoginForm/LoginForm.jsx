@@ -1,16 +1,15 @@
 import { useDispatch } from 'react-redux';
-import { register } from 'redux/auth/operations';
-import css from './RegisterForm.module.css';
+import { logIn } from 'redux/auth/operations';
+import css from './LoginForm.module.css';
 
-export const RegisterForm = () => {
+export const LoginForm = () => {
   const dispatch = useDispatch();
 
   const handleSubmit = e => {
     e.preventDefault();
     const form = e.currentTarget;
     dispatch(
-      register({
-        name: form.elements.name.value,
+      logIn({
         email: form.elements.email.value,
         password: form.elements.password.value,
       })
@@ -20,15 +19,6 @@ export const RegisterForm = () => {
 
   return (
     <form className={css.form} onSubmit={handleSubmit} autoComplete="off">
-      <label className={css.label}>
-        Username
-              <input
-                  type="text"
-                  name="name"
-                  pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-                    title="Name must contain only letters(uppercase, lowercase)."
-              />
-      </label>
       <label className={css.label}>
         Email
               <input
@@ -46,7 +36,7 @@ export const RegisterForm = () => {
                   title="Password must contain one  number and one uppercase and lowercase letter, 8 or more characters"
               />
       </label>
-      <button type="submit">Register</button>
+      <button type="submit">Log In</button>
     </form>
   );
 };
