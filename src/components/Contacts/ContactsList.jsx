@@ -26,7 +26,7 @@ export const ContactsList = () => {
             {visibleContacts.map((contact) => 
                  <ContactItem key={contact.id}>
                         <ContactDescription>{contact.name}:</ContactDescription>
-                        <ContactDescription>{contact.phone}</ContactDescription>
+                        <ContactDescription>{contact.number}</ContactDescription>
                         <ContactButton type="button" onClick={() => contactDelete(contact.id)}>Delete</ContactButton>
                     </ContactItem>
             )}
