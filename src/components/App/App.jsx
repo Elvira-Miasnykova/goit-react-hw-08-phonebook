@@ -1,27 +1,20 @@
 import { Route, Routes, Navigate } from 'react-router-dom';
-//import { Contacts } from 'pages/Contacts';
-import { useEffect} from "react";
+import { useEffect, lazy} from "react";
 import { useDispatch } from "react-redux";
-//import { fetchContacts } from 'redux/contacts/operations';
-//import { getError, getIsLoading } from 'redux/contacts/selectors';
 import { Layout } from '../Layout/Layout';
-import { Home } from 'pages/Home';
-import { Registration } from 'pages/Regisration';
-import { Login } from '../../pages/Login';
 import { refreshUser } from 'redux/auth/operations';
 import { PrivateRoute } from 'components/PrivateRoute';
 import { useAuth } from 'hooks';
 import { RestrictedRoute } from 'components/RestrictedRoute';
-import { Contacts } from 'pages/Contacts';
+import { Loader } from 'components/Loader/Loader';
+import { Box } from 'components/Box';
 
- //const HomePage = lazy(() => import('../../pages/Home'));
- //const RegisterPage = lazy(() => import('../../pages/Regisration'));
-// const LoginPage = lazy(() => import('../../pages/Login'));
-//const ContactsPage = lazy(() => import('../../pages/Contacts'));
-//const ContactsPage = lazy(() => import('../../pages/Contacts')); 
+const HomePage = lazy(() => import('../../pages/Home'));
+const RegisterPage = lazy(() => import('../../pages/Regisration'));
+const LoginPage = lazy(() => import('../../pages/Login'));
+const ContactsPage = lazy(() => import('../../pages/Contacts'));
 
-
-export function App() {
+export const App = () => {
   const dispatch = useDispatch();
   
   const { isRefreshing } = useAuth();
@@ -30,41 +23,38 @@ export function App() {
      dispatch(refreshUser());
    }, [dispatch]);
 
-  
-  // const isLoading = useSelector(getIsLoading);
-  // const error = useSelector(getError);
-  
+    
   return (
-    <>
+    <Box>
       {isRefreshing ? (
-        <b>Refreshing user...</b>
+        <Loader/>
       ) : (
         <Routes>
           <Route path="/" element={<Layout />}>
             {/* <Route index element={<HomePage />} /> */}
             <Route index element={<Navigate to="home" />} />
-            <Route path='home' element={<Home />} />
+            <Route path='home' element={<HomePage />} />
             <Route
               path="/register"
               element={
-                <RestrictedRoute redirectTo="/contacts" component={<Registration />} />
+                <RestrictedRoute redirectTo="/contacts" component={<RegisterPage />} />
               }
             />
             <Route
               path="/login"
               element={
-                <RestrictedRoute redirectTo="/contacts" component={<Login />} />
+                <RestrictedRoute redirectTo="/contacts" component={<LoginPage />} />
               }
             />
             <Route
               path="/contacts"
               element={
-                <PrivateRoute redirectTo="/login" component={<Contacts />} />
+                <PrivateRoute redirectTo="/login" component={<ContactsPage />} />
               }
             />
           </Route>
         </Routes>
       )}
-    </>
+    </Box>
   )
 };
