@@ -7,12 +7,13 @@ import { PrivateRoute } from 'components/PrivateRoute';
 import { useAuth } from 'hooks';
 import { RestrictedRoute } from 'components/RestrictedRoute';
 import { Loader } from 'components/Loader/Loader';
-import { Box } from 'components/Box';
+//import { Box } from 'components/Box';
+import { Container } from './App.styled';
 
 const HomePage = lazy(() => import('../../pages/Home'));
 const RegisterPage = lazy(() => import('../../pages/Regisration'));
 const LoginPage = lazy(() => import('../../pages/Login'));
-const ContactsPage = lazy(() => import('../../pages/Contacts'));
+const ContactsPage = lazy(() => import('../../pages/Contacts/Contacts'));
 
 export const App = () => {
   const dispatch = useDispatch();
@@ -25,7 +26,7 @@ export const App = () => {
 
     
   return (
-    <Box>
+    <Container>
       {isRefreshing ? (
         <Loader/>
       ) : (
@@ -55,6 +56,6 @@ export const App = () => {
           </Route>
         </Routes>
       )}
-    </Box>
+    </Container>
   )
 };

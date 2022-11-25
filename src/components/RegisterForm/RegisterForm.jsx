@@ -1,6 +1,7 @@
+import { Box } from 'components/Box';
 import { useDispatch } from 'react-redux';
 import { register } from 'redux/auth/operations';
-import css from './RegisterForm.module.css';
+import { LabelStyled, InputStyled, ButtonStyled } from './RegisterForm.styled';
 
 export const RegisterForm = () => {
   const dispatch = useDispatch();
@@ -19,34 +20,34 @@ export const RegisterForm = () => {
   };
 
   return (
-    <form className={css.form} onSubmit={handleSubmit} autoComplete="off">
-      <label className={css.label}>
+    <Box as="form" width="320px" onSubmit={handleSubmit} autoComplete="off" bg="muted"  border="normal" borderRadius="normal" borderColor="accent" display="block" p={3} mb={3}>
+      <LabelStyled>
         Username
-              <input
+              <InputStyled
                   type="text"
                   name="name"
                   pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
                     title="Name must contain only letters(uppercase, lowercase)."
               />
-      </label>
-      <label className={css.label}>
+      </LabelStyled>
+      <LabelStyled>
         Email
-              <input
+              <InputStyled
                   type="email"
                   name="email"
                   pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
               />
-      </label>
-      <label className={css.label}>
+      </LabelStyled>
+      <LabelStyled>
         Password
-              <input
+              <InputStyled
                   type="password"
                   name="password"
                   pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
                   title="Password must contain one  number and one uppercase and lowercase letter, 8 or more characters"
               />
-      </label>
-      <button type="submit">Register</button>
-    </form>
+      </LabelStyled>
+      <ButtonStyled type="submit">Register</ButtonStyled>
+    </Box>
   );
 };

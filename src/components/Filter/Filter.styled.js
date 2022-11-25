@@ -5,7 +5,7 @@ export const LabelStyled = styled.label`
     font-size: ${p => p.theme.fontSizes[2]}px;
     margin-bottom: ${p => p.theme.space[3]}px;
     display: block;
-    text-align: left;
+    text-align: center;
 `;
 
 export const InputStyled = styled.input`

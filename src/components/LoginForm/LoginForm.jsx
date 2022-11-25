@@ -1,6 +1,7 @@
+import { Box } from 'components/Box';
 import { useDispatch } from 'react-redux';
 import { logIn } from 'redux/auth/operations';
-import css from './LoginForm.module.css';
+import { LabelStyled, InputStyled, ButtonStyled } from './LoginForm.styled';
 
 export const LoginForm = () => {
   const dispatch = useDispatch();
@@ -18,25 +19,25 @@ export const LoginForm = () => {
   };
 
   return (
-    <form className={css.form} onSubmit={handleSubmit} autoComplete="off">
-      <label className={css.label}>
+    <Box as="form" width="320px" onSubmit={handleSubmit} autoComplete="off" bg="muted"  border="normal" borderRadius="normal" borderColor="accent" display="block" p={3} mb={3}>
+      <LabelStyled>
         Email
-              <input
+              <InputStyled
                   type="email"
                   name="email"
                   pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
               />
-      </label>
-      <label className={css.label}>
+      </LabelStyled>
+      <LabelStyled>
         Password
-              <input
+              <InputStyled
                   type="password"
                   name="password"
                   pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
                   title="Password must contain one  number and one uppercase and lowercase letter, 8 or more characters"
               />
-      </label>
-      <button type="submit">Log In</button>
-    </form>
+      </LabelStyled>
+      <ButtonStyled type="submit">Log In</ButtonStyled>
+    </Box>
   );
 };

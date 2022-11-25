@@ -1,15 +1,3 @@
-
-// import { useAuth } from "hooks"
-// //import { useSelector } from "react-redux"
-// import { Route, Navigate } from "react-router-dom"
-
-// export const PrivateRoute = ({ children, ...routeProps }) => {
-//     const isLoggedIn = useAuth();
-//     return <Route {...routeProps}>
-//         {isLoggedIn ? children : <Navigate to="/register/"/>}
-//     </Route>
-// }
-
 import { Navigate } from 'react-router-dom';
 import { useAuth } from 'hooks';
 

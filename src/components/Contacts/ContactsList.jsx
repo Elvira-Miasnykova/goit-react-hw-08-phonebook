@@ -1,3 +1,4 @@
+import { Box } from 'components/Box';
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteContact } from "redux/contacts/operations";
@@ -22,7 +23,7 @@ export const ContactsList = () => {
     const visibleContacts = getVisibleContacts();
     
     return (
-        <ul>
+        <Box as="ul" p={4} border="normal" borderColor="accent" borderRadius="normal">
             {visibleContacts.map((contact) => 
                  <ContactItem key={contact.id}>
                         <ContactDescription>{contact.name}:</ContactDescription>
@@ -30,7 +31,7 @@ export const ContactsList = () => {
                         <ContactButton type="button" onClick={() => contactDelete(contact.id)}>Delete</ContactButton>
                     </ContactItem>
             )}
-        </ul>
+        </Box>
     )
 };
 
